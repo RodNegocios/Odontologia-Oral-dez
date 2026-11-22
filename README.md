@@ -1,23 +1,21 @@
 # Oral Dez Odontologia
 
-Página institucional da clínica em Vilhena, RO. Os dados de contato, horários e a biografia vêm do arquivo `Informações`. O retrato do crachá e a foto da fachada são do acervo original. As imagens de objetos odontológicos são ilustrações produzidas para os tratamentos.
+Site da Clínica Oral Dez, em Vilhena (RO). A raiz da branch `main` contém a página compilada, pronta para hospedagem estática.
 
-## Arquivo pronto para hospedagem
+## Integração Git na Hostinger
+
+Use a branch `main` deste repositório, sem subdiretório. Ao implantar essa branch no diretório público do domínio, a Hostinger recebe `index.html`, `assets/` e `media/` prontos para o navegador. Quando a implantação automática estiver desativada, use a opção de implantar a versão mais recente no painel Git da hospedagem.
+
+## Instalação por ZIP
 
 [Baixar o site para a Hostinger](https://raw.githubusercontent.com/RodNegocios/Odontologia-Oral-dez/main/publicacao/Oral-Dez-Hostinger.zip)
 
-O ZIP contém a página e os recursos do site. No gerenciador de arquivos da Hostinger, abra a pasta pública do domínio (geralmente `public_html/`) e extraia o ZIP ali. O arquivo `index.html`, as pastas `assets/` e `media/` devem ficar diretamente dentro dessa pasta. O pacote já está compilado.
+Extraia o conteúdo do ZIP na pasta pública do domínio (geralmente `public_html/`), com `index.html` diretamente nessa pasta. Este pacote contém os mesmos arquivos do site servido pela integração Git.
 
-## Desenvolvimento
+## Desenvolvimento e atualização
 
-Use Node.js 22.12 ou superior. Instale as dependências com `npm ci` e execute `npm run dev`. A página usa React, Vite e os efeitos DriftWall, ScrollStack e Lanyard adaptados das referências React Bits fornecidas.
+Os arquivos editáveis ficam em `app/`. Use Node.js 22.12 ou superior e execute `npm ci` e `npm run dev`. Para gerar a produção, execute `npm run build`. A saída fica em `dist/` e pode ser revisada com `npm run preview`.
 
-## Atualizar o pacote de publicação
+Depois de validar um novo build, execute `python3 scripts/publicar.py` na raiz do projeto. O script atualiza os arquivos estáticos da raiz e o ZIP a partir da mesma compilação. Inclua as mudanças no mesmo commit da atualização do código.
 
-Depois de editar o site, execute `npm run build`. Para atualizar o ZIP do repositório, compacte o **conteúdo** de `dist/` com `index.html` na raiz. Em sistemas com `zip` instalado, execute esta linha na raiz do projeto.
-
-```sh
-(cd dist && zip -q -r -FS ../publicacao/Oral-Dez-Hostinger.zip .)
-```
-
-Para revisar o build localmente, use `npm run preview`.
+Os dados de contato, horários e a biografia vêm do arquivo `Informações`. O retrato do crachá e a foto da fachada são do acervo original. As imagens de objetos odontológicos são ilustrativas.
